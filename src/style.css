@@ -2,8 +2,8 @@
 
 :root {
     /* Colors */
-    --bg-light: rgba(208, 231, 210, 0.57);
-    --bg-dark: rgba(50, 74, 52, 0.57);
+    --bg-light: rgba(208, 231, 210, 0.27);
+    --bg-dark: rgba(6, 15, 7, 0.492);
 
     --primary-dark: #618264;
     --primary-light: #79ac78;
@@ -18,12 +18,14 @@
 
 body {
     font-family: Inter, sans-serif;
+    color:var(--primary-dark);
+    filter: hue-rotate(350deg);
 }
 
 main {
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-position: -200px; */
+    /* background-position: -500px; */
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -33,11 +35,13 @@ main {
     background-image: linear-gradient(var(--bg-light), var(--bg-dark));
 
     height: 100%;
-    filter: opacity(100%);
+    /* filter: opacity(100%); */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3rem;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .title-container {
@@ -80,33 +84,55 @@ main {
 .time-container {
     width: 100%;
     display: grid;
-    grid-template-rows: 5rem;
-    grid-template-columns: 5rem 1rem 5rem 1rem 5rem 1rem 5rem;
-    /* grid-template-columns: repeat(4, 5rem); */
+    grid-template-rows: 5em 2em;
+    grid-template-columns: 5em 1em 5em 1em 5em 1em 5rem;
     justify-content: space-between;
-    /* background: #d0e7d2; */
-    flex-grow: stretch;
-
     & .time-hand-card {
-        background-color: var(--secondary);
+        /* background-color: var(--secondary); */
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 10px;
+        background-image: linear-gradient(to right, var(--secondary) 88%, var(--primary-light) 50%);
     }
 
-   & .dot {
-      align-self: center;
-  }
+    & .dot {
+        align-self: center;
+      /* font-size: 2.5rem; */
+
+    }
+
+    & .handle-label {
+      justify-self: center;
+      color: var(--primary-light);
+    }
+
+    & .time {
+      font-size: 2.5rem;
+    }
+}
+
+.message-container {
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: 10px;
+
+    & .message {
+        color: #fff;
+        font-size: 1.1rem;
+    }
 }
 
 
-.message-container {
-   background-color: var(--primary-light);
-   padding: 1rem;
-   border-radius: 10px;
+.button-container {
 
-   & .message {
-      color: #fff;
+   & .wish-me {
+      width: 12rem;
+      height: 3rem;
+      border-radius: 10px;
+      border: none;
+      background-image: linear-gradient(to right, var(--secondary) 85%, var(--primary-light) 50%);
+      color: var(--primary-dark);
+      
    }
 }
