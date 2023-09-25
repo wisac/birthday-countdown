@@ -101,3 +101,12 @@ main {
 }
 
 
+.message-container {
+   background-color: var(--primary-light);
+   padding: 1rem;
+   border-radius: 10px;
+
+   & .message {
+      color: #fff;
+   }
+}
