@@ -1,14 +1,43 @@
-:root {
-   /* Colors */
-   --bg-light:  rgba(208, 231, 210, 0.57);
-   --bg-dark: rgba(50, 74, 52, 0.57);
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-   --primary-dark: #618264;
-   --primary-light: #79AC78;
-   --secondary:#D0E7D2; 
+:root {
+    /* Colors */
+    --bg-light: rgba(208, 231, 210, 0.57);
+    --bg-dark: rgba(50, 74, 52, 0.57);
+
+    --primary-dark: #618264;
+    --primary-light: #79ac78;
+    --secondary: #d0e7d2;
 }
 
 * {
-   margin: 0;
-   box-sizing: border-box;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
 }
+
+body {
+    font-family: Inter, sans-serif;
+}
+
+
+main {
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: -200px;
+   height: 100vh;
+   width: 100vw;
+   display: flex;
+}
+
+.overlay-container {
+   background-image: linear-gradient(var(--bg-light), var(--bg-dark));
+
+   height:
+   100%;
+   filter: opacity(30%);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
