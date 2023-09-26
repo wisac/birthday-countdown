@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+.wish-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    max-height: 50vh;
+    max-width: 90vw;
+   
+    background-image: linear-gradient(
+        to bottom left,
+        var(--bg-light),
+        var(--primary-dark)
+    );
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+    color: var(--primary-dark);
+
+    & h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+
+    }
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+      width: 100%;
+    border-radius: 10px;
+    margin: auto;
+
+    & label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: block;
+    }
+
+    & input {
+        width: 50%;
+        border-radius: 20px;
+        border: 2px solid var(--primary-light);
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        resize: none;
+        display: block;
+
+        &:focus {
+            border: 2px solid var(--primary-dark);
+        }
+    }
+
+    & textarea {
+        width: 80%;
+         /* height: 50%; */
+        border-radius: 10px;
+        border: 2px solid var(--primary-light);
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        resize: none;
+        display: block;
+    }
+}
+
+#send-wish-btn {
+    display: block;
+}

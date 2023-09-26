@@ -258,8 +258,8 @@ main {
     }
 }
 
-.button-container {
-    & .wish-me-btn {
+
+.wish-me-btn {
         width: 12rem;
         height: 3rem;
         border-radius: 40px;
@@ -305,4 +305,4 @@ main {
             font-size: 1.2rem;
         } /* 1024px */
     }
-}
+
