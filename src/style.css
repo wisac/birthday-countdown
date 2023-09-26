@@ -108,6 +108,11 @@ main {
     & .time-hand-time {
         font-size: 2.5rem;
     }
+
+    & .time-hand-divider {
+        color: var(--primary-light);
+        align-self: center;
+    }
 }
 
 .message-container {
