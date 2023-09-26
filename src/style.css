@@ -20,6 +20,16 @@ body {
     font-family: Inter, sans-serif;
     color: var(--primary-dark);
     filter: hue-rotate(350deg);
+
+    /* Low resolution tablets and large mobile 480px to 768px*/
+    @media screen and (min-width: 480px) {
+        font-size: 1.1rem;
+    }
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        font-size: 1.3rem;
+    } /* 768px */
 }
 
 main {
@@ -29,6 +39,22 @@ main {
     height: 100vh;
     width: 100vw;
     display: flex;
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        background-position: -200px;
+        justify-content: center;
+        padding: 2rem;
+        &::before {
+            background-image: linear-gradient(var(--bg-light), var(--bg-dark));
+            height: 100vh;
+            width: 100%;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    } /* 768px */
 }
 
 .overlay-container {
@@ -40,6 +66,13 @@ main {
     padding: 2.5rem;
     justify-content: space-between;
     width: 100%;
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        z-index: 1;
+        border-radius: 10px;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+    } /* 768px */
 }
 
 .title-container {
@@ -56,6 +89,18 @@ main {
     align-items: center;
     border-radius: 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    /* Low resolution tablets and large mobile 480px to 768px*/
+    @media screen and (min-width: 480px) {
+        height: 320px;
+        width: 320px;
+    } /* 480px */
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        height: 350px;
+        width: 350px;
+    } /* 768px */
 }
 
 .inner-circle {
@@ -96,22 +141,44 @@ main {
         justify-content: center;
         border-radius: 10px;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    }
 
-    & .time-hand-label {
-        position: absolute;
-        bottom: 0;
-        font-size: 0.7rem;
-        color: var(--primary-light);
-    }
+        /* Low resolution tablets and large mobile 480px to 768px*/
+        @media screen and (min-width: 480px) {
+            width: 5em;
+            height: 5em;
+        } /* 480px */
 
-    & .time-hand-time {
-        font-size: 2.5rem;
+        /* High resolution tablets and small laptops 768px to 1024px*/
+        @media screen and (min-width: 768px) {
+            width: 6em;
+            height: 6em;
+        } /* 768px */
     }
+}
 
-    & .time-hand-divider {
-        align-self: center;
-    }
+& .time-hand-label {
+    position: absolute;
+    bottom: 0;
+    font-size: 0.7rem;
+    color: var(--primary-light);
+
+    /*High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        font-size: 0.9rem;
+    } /* 768px */
+}
+
+& .time-hand-time {
+    font-size: 2.5rem;
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        font-size: 3.5rem;
+    } /* 768px */
+}
+
+& .time-hand-divider {
+    align-self: center;
 }
 
 .message-container {
@@ -123,6 +190,11 @@ main {
     & .message {
         color: #fff;
         font-size: 1.1rem;
+
+        /* High resolution tablets and small laptops 768px to 1024px*/
+        @media screen and (min-width: 768px) {
+            font-size: 1.3rem;
+        } /* 768px */
     }
 }
 
@@ -141,15 +213,29 @@ main {
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         font-weight: 600;
         transition: filter, 0.2s ease-in-out;
-
+        text-align: center;
 
         &:hover {
             cursor: pointer;
             filter: brightness(1.1);
         }
-        
+
         &:active {
             filter: brightness(0.9);
         }
+
+        /* Low resolution tablets and large mobile 480px to 768px*/
+        @media screen and (min-width: 480px) {
+            width: 13rem;
+            height: 3.5rem;
+            font-size: 1.1rem;
+        } /* 480px */
+
+        /* High resolution tablets and small laptops 768px to 1024px*/
+        @media screen and (min-width: 768px) {
+            width: 15rem;
+            height: 4rem;
+            font-size: 1.3rem;
+        } /* 768px */
     }
 }
