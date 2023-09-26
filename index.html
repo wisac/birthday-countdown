@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Birthday Countdown</title>
+        <link rel="stylesheet" href="src/style.css" />
+    </head>
 
-<head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>My Birthday Countdown</title>
-   <link rel="stylesheet" href="src/style.css">
-</head>
+    <body>
+        <main
+            style="
+                background-image: url('images/eberhard-grossgasteiger-kSfSAk5l4HQ-unsplash.jpg');
+            "
+        >
+            <div class="overlay-container">
+                <div class="title-container">
+                    <h3 class="title">MY BIRTHDAY INCOMING</h3>
+                    <h5 class="date">Tuesday, 10 October 2023</h5>
+                </div>
+                <div class="profile-container">
+                    <div class="outer-circle">
+                        <div class="inner-circle">
+                            <div
+                                class="picture"
+                                style="
+                                    background-image: url('images/picture.jpg');
+                                "
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-container">
+                    <div class="day-box time-hand-card">
+                        <h1 class="time-hand-time day">00</h1>
+                        <h2 class="time-hand-label">DAY</h2>
+                    </div>
+                    <h1 class="dot">:</h1>
+                    <div class="hrs-box time-hand-card">
+                        <h1 class="time-hand-time hrs">23</h1>
+                        <h2 class="time-hand-label">HRS</h2>
+                    </div>
+                    <h1 class="dot">:</h1>
 
-<body>
-   <main style="background-image: url('images/eberhard-grossgasteiger-kSfSAk5l4HQ-unsplash.jpg');">
-      <div class="overlay-container">
-         <div class="title-container">
-            <h3 class="title">MY BIRTHDAY INCOMING</h3>
-            <h5 class="date">Tuesday, 10 October 2023</h5>
-         </div>
-         <div class="profile-container">
-            <div class="outer-circle">
-               <div class="inner-circle">
-                  <div class="picture" style="background-image: url('images/picture.jpg')"></div>
-               </div>
+                    <div class="min-box time-hand-card">
+                        <h1 class="time-hand-time min">60</h1>
+                        <h2 class="time-hand-label">MIN</h2>
+                    </div>
+
+                    <h1 class="dot">:</h1>
+
+                    <div class="sec-box time-hand-card">
+                        <h1 class="time-hand-time sec">59</h1>
+                        <h2 class="time-hand-label">SEC</h2>
+                    </div>
+                </div>
+                <div class="message-container">
+                    <p class="message">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Deserunt, delectus. Lorem ipsum dolor sit. Lorem,
+                        ipsum dolor.
+                    </p>
+                </div>
+                <div class="button-container">
+                    <button class="wish-me-btn">WISH ME</button>
+                </div>
             </div>
-         </div>
-         <div class="time-container">
-            <div class="day-box time-hand-card">
-               <h1 class="time day">00</h1>
-            </div>
-            <h1 class="dot">:</h1>
-            <div class="hr-box time-hand-card">
-               <h1 class="time hrs">23</h1>
-            </div>
-            <h1 class="dot">:</h1>
-
-            <div class="min-box time-hand-card">
-               <h1 class="time min">60</h1>
-            </div>
-
-            <h1 class="dot">:</h1>
-
-
-            <div class="sec-box time-hand-card">
-               <h1 class="time sec">59</h1>
-            </div>
-            <div class="handle-label">DAY</div>
-            <div class="handle-label"></div>
-            <div class="handle-label">HRS</div>
-            <div class="handle-label"></div>
-            <div class="handle-label">MIN</div>
-            <div class="handle-label"></div>
-            <div class="handle-label">SEC</div>
-            
-
-         </div>
-         <div class="message-container">
-            <p class="message">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, delectus. Lorem ipsum
-               dolor sit. Lorem, ipsum dolor.
-            </p>
-         </div>
-         <div class="button-container">
-            <button class="wish-me">WISH ME</button>
-         </div>
-      </div> <!--Overlay-container-->
-   </main>
-</body>
-
+            <!--Overlay-container-->
+        </main>
+    </body>
 </html>
