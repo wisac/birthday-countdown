@@ -5,14 +5,14 @@ body {
 }
 .wish-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     width: 500px;
     height: 500px;
     max-height: 50vh;
     max-width: 90vw;
-   
+
     background-image: linear-gradient(
         to bottom left,
         var(--bg-light),
@@ -26,18 +26,16 @@ body {
     & h1 {
         font-size: 1.5rem;
         font-weight: 600;
-
     }
 }
 
 form {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-      width: 100%;
+    width: 100%;
     border-radius: 10px;
-    margin: auto;
 
     & label {
         font-size: 1.2rem;
@@ -50,10 +48,10 @@ form {
         border-radius: 20px;
         border: 2px solid var(--primary-light);
         padding: 0.5rem;
-        margin-bottom: 1rem;
         font-size: 1rem;
         resize: none;
         display: block;
+        margin-bottom: 1rem;
 
         &:focus {
             border: 2px solid var(--primary-dark);
@@ -62,12 +60,11 @@ form {
 
     & textarea {
         width: 80%;
-         /* height: 50%; */
+        height: 10rem;
         border-radius: 10px;
         border: 2px solid var(--primary-light);
         padding: 0.5rem;
         font-size: 1rem;
-        margin-bottom: 1rem;
         resize: none;
         display: block;
     }
@@ -75,4 +72,7 @@ form {
 
 #send-wish-btn {
     display: block;
+    height: 2.5rem;
+    width: 11rem;
+    margin-top: 1rem;
 }
