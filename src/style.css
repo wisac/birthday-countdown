@@ -30,6 +30,11 @@ body {
     @media screen and (min-width: 768px) {
         font-size: 1.3rem;
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        font-size: 1rem;
+    } /* 1024px */
 }
 
 main {
@@ -55,6 +60,12 @@ main {
             left: 0;
         }
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        background-position: 0;
+        padding: 4rem;
+    } /* 1024px */
 }
 
 .overlay-container {
@@ -73,12 +84,23 @@ main {
         border-radius: 10px;
         box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        padding: 3rem;
+    } /* 1024px */
 }
 
 .title-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        align-self: flex-start;
+        position: absolute;
+        align-self: flex-start;
+    } /* 1024px */
 }
 
 .outer-circle {
@@ -101,6 +123,12 @@ main {
         height: 350px;
         width: 350px;
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        height: 200px;
+        width: 200px;
+    } /* 1024px */
 }
 
 .inner-circle {
@@ -130,6 +158,13 @@ main {
     justify-content: space-between;
     width: 100%;
 
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        width: 60%;
+        /* justify-content: center; */
+        gap: 2%;
+    } /* 1024px */
+
     & .time-hand-card {
         position: relative;
         width: 4em;
@@ -153,6 +188,12 @@ main {
             width: 6em;
             height: 6em;
         } /* 768px */
+
+        /* Laptop and desktop 1024px to 2560px*/
+        @media screen and (min-width: 1024px) {
+            width: 8em;
+            height: 8em;
+        } /* 1024px */
     }
 }
 
@@ -186,6 +227,11 @@ main {
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        width: 60%;
+    } /* 1024px */
 
     & .message {
         color: #fff;
@@ -237,5 +283,12 @@ main {
             height: 4rem;
             font-size: 1.3rem;
         } /* 768px */
+
+        /* Laptop and desktop 1024px to 2560px*/
+        @media screen and (min-width: 1024px) {
+            width: 12rem;
+            height: 3rem;
+            font-size: 1.3rem;
+        } /* 1024px */
     }
 }
