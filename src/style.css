@@ -33,7 +33,7 @@ body {
 
     /* Laptop and desktop 1024px to 2560px*/
     @media screen and (min-width: 1024px) {
-        font-size: 1rem;
+        font-size: 1.1rem;
     } /* 1024px */
 }
 
@@ -207,6 +207,11 @@ main {
     @media screen and (min-width: 768px) {
         font-size: 0.9rem;
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        font-size: 0.9rem;
+    } /* 1024px */
 }
 
 & .time-hand-time {
@@ -216,10 +221,19 @@ main {
     @media screen and (min-width: 768px) {
         font-size: 3.5rem;
     } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        font-size: 4.5rem;
+    } /* 1024px */
 }
 
 & .time-hand-divider {
     align-self: center;
+    margin: auto;
+    height: fit-content;
+    ;
+    
 }
 
 .message-container {
@@ -248,7 +262,7 @@ main {
     & .wish-me-btn {
         width: 12rem;
         height: 3rem;
-        border-radius: 10px;
+        border-radius: 40px;
         border: none;
         background-image: linear-gradient(
             to right,
@@ -288,7 +302,7 @@ main {
         @media screen and (min-width: 1024px) {
             width: 12rem;
             height: 3rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         } /* 1024px */
     }
 }
