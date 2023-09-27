@@ -15,19 +15,22 @@ const emailServiceID = "default_service";
    emailjs.init(publicKey);
 })();
 
-// funxtion to display success message
-function displaySuccessMessage(sender) {
-   wishForm.style.display = "none";
-   wishContainer.style.height = "200px";
-   successMessage.textContent = `Thank you for your wishes ${sender}!`;
+/**
+ * Function to handle wish sending success or failure
+ * @param {string} sender - Sender's name
+ * @param {boolean} messageSent - Whether message was sent successfully
+ */
+function emailStatusIndicator(sender, messageSent) {
+   if (messageSent) {
+      wishForm.style.display = "none";
+      wishContainer.style.height = "200px";
+      successMessage.textContent = `Thank you for your wishes ${sender}!`;
+   } else {alert(
+      `Error.\n\nHello ${sender}, We failed to send your message.\nPlease reload the page or try again later.`
+   ); }
+
 }
 
-//function to display error message
-function displayErrorMessage() {
-   alert(
-      "Error. Wish failed to send. Please reload the page and try again."
-   );
-}
 
 window.onload = function () {
    wishForm.addEventListener("submit", function (event) {
@@ -37,16 +40,16 @@ window.onload = function () {
       this.contact_number.value = (Math.random() * 100000) | 0;
 
       // Set default sender name
-      this.sender_name.value ||= "Someone";
+      this.sender_name.value ||= "Anonymous";
 
       // send email
-      emailjs.sendForm("default_service", emailTemplateID, this).then(
+      emailjs.sendForm(emailServiceID, emailTemplateID, this).then(
          function (response) {
 
-            displaySuccessMessage(senderInput.value);
+            emailStatusIndicator(senderInput.value, true);
          },
          function (error) {
-            displayErrorMessage();
+            emailStatusIndicator(senderInput.value, false);
          }
       );
    });
