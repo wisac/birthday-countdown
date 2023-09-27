@@ -94,12 +94,15 @@ main {
 .title-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     /* Laptop and desktop 1024px to 2560px*/
     @media screen and (min-width: 1024px) {
         align-self: flex-start;
         position: absolute;
         align-self: flex-start;
+        align-items: flex-start;
     } /* 1024px */
 }
 

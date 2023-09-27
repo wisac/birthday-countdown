@@ -1,6 +1,7 @@
 // Select elements
 const wishBtn = document.querySelector(".wish-me-btn");
 const progressCircle = document.querySelector(".inner-circle");
+const mainTitle = document.querySelector(".title");
 const dayTimer = document.querySelector(".day-hand");
 const hourTimer = document.querySelector(".hrs-hand");
 const minuteTimer = document.querySelector(".min-hand");
@@ -8,7 +9,7 @@ const secondTimer = document.querySelector(".sec-hand");
 
 // Set start and end date
 const startDate = new Date("sept 27, 2023 10:00:00 AM");
-const endDate = new Date("sept 27, 2023 11:20:00 AM");
+const endDate = new Date("sept 27, 2023 11:52:00 AM");
 
 // Time conversions
 const milToDay = 4 * 60 * 60 * 1000;
@@ -33,21 +34,33 @@ let timer = setInterval(() => {
    // Update timer
    updateTimer(daysLeft, hoursLeft, minutesLeft, secondsLeft);
 
-   //   
-   let progress = todayDate - startDate;
-   let progressPercent = Math.floor((progress / (endDate - startDate)) * 100);
-   console.log(progressPercent, "%");
+   // Update progress circle   
+   let progressPercent = calcProgressPercent(todayDate);
    updateProgressCircle(progressPercent);
 
-   console.log(timeLeft, "milli");
    // Stop countdown timer when time is up
-   if (timeLeft <= 0) clearInterval(timer);
+   if (timeLeft <= 0) { 
+      mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
+      clearInterval(timer);
+   } 
 }, 1000);
 
 
 
 /**
- * Function to update timer UI
+ * Function to calculate progress percentage
+ * @param {Date} todayDate - Today's date
+ * @returns {number} - Progress percentage
+ */
+function calcProgressPercent(todayDate) {
+   let progress = todayDate - startDate;
+   let progressPercent = Math.floor((progress / (endDate - startDate)) * 100);
+   console.log(progressPercent, "%");
+   return progressPercent;
+}
+
+/**
+ * Function to update timer on UI
  * @param {number} days - Days left
  * @param {number} hours - Hours left
  * @param {number} minutes - Minutes left
