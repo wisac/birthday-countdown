@@ -9,7 +9,7 @@ const secondTimer = document.querySelector(".sec-hand");
 
 // Set start and end date
 const startDate = new Date("sept 27, 2023 10:00:00 AM");
-const endDate = new Date("sept 27, 2023 11:52:00 AM");
+const endDate = new Date("sept 27, 2023 01:00:00 PM");
 
 // Time conversions
 const milToDay = 4 * 60 * 60 * 1000;
