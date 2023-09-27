@@ -8,7 +8,7 @@ const secondTimer = document.querySelector(".sec-hand");
 
 // Set start and end date
 const startDate = new Date("sept 27, 2023 10:00:00 AM");
-const endDate = new Date("sept 27, 2023 11:00:00 AM");
+const endDate = new Date("sept 27, 2023 11:20:00 AM");
 
 // Time conversions
 const milToDay = 4 * 60 * 60 * 1000;
@@ -37,6 +37,7 @@ let timer = setInterval(() => {
    let progress = todayDate - startDate;
    let progressPercent = Math.floor((progress / (endDate - startDate)) * 100);
    console.log(progressPercent, "%");
+   updateProgressCircle(progressPercent);
 
    console.log(timeLeft, "milli");
    // Stop countdown timer when time is up
@@ -65,6 +66,20 @@ function updateTimer(days, hours, minutes, seconds) {
    hourTimer.textContent = hours > 9 ? hours : `0${hours}`;
    minuteTimer.textContent = minutes > 9 ? minutes : `0${minutes}`;
    secondTimer.textContent = seconds > 9 ? seconds : `0${seconds}`;
+}
+
+
+/**
+ * Function to update progress circle
+ * @param {number} progressPercent - Progress percentage
+ */
+function updateProgressCircle(progressPercent) {
+   const totalAngle = 360;
+   let angle = (progressPercent / 100) * totalAngle;
+   progressCircle.style.backgroundImage = `conic-gradient(
+      var(--primary-light) ${angle}deg,
+      var(--secondary) ${angle}deg`;
+
 }
 
 

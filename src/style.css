@@ -135,8 +135,8 @@ main {
     width: 100%;
     height: 100%;
     background-image: conic-gradient(
-        var(--primary-light) 100deg,
-        var(--secondary) 100deg
+        var(--primary-light) 0deg,
+        var(--secondary) 0deg
     );
     display: flex;
     justify-content: center;
