@@ -7,17 +7,21 @@
    <title>Send Wish</title>
    <link rel="stylesheet" href="src/wish.css">
    <link rel="stylesheet" href="src/style.css">
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+   <script defer src="src/send-wish.js"></script>
 </head>
 
 <body>
    <div class="wish-container">
    <h1>Send Wish</h1>
-   <form id="wish-form" method="POST">
+   <form id="wish-form">
+      <input type="hidden" name="contact_number">
       <label for="name">Name</label>
-      <input type="text" name="name" id="sender-name" placeholder="Enter your name">
-      <label for="wish">Wish</label>
-      <textarea name="wish" id="wish-message" cols="30" placeholder="Enter your wish" required></textarea>
-      <button id="send-wish-btn" class="wish-me-btn" type="submit">Send Wish</button>
+      <input type="text" name="sender_name" id="sender-name" placeholder="Enter your name">
+      <label for="wish">Message</label>
+      <textarea name="wish_message" id="wish-message" cols="30" placeholder="Enter your wish" required></textarea>
+      <input type="submit" id="send-wish-btn" class="wish-me-btn" value="Send Wish">
+
    </form>
 </div>
 
