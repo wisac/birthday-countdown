@@ -45,6 +45,8 @@ main {
     width: 100vw;
     display: flex;
 
+    
+
     /* High resolution tablets and small laptops 768px to 1024px*/
     @media screen and (min-width: 768px) {
         background-position: -200px;

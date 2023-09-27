@@ -10,9 +10,9 @@ const emailTemplateID = "template_woj5bnw";
 const publicKey = "86IJgs7athT9A2r1_";
 const emailServiceID = "default_service";
 
-//initialize emailjs
+//initialize emailjs API
 (function () {
-   emailjs.init(publicKey);
+    emailjs.init(publicKey);
 })();
 
 /**
@@ -21,36 +21,35 @@ const emailServiceID = "default_service";
  * @param {boolean} messageSent - Whether message was sent successfully
  */
 function emailStatusIndicator(sender, messageSent) {
-   if (messageSent) {
-      wishForm.style.display = "none";
-      wishContainer.style.height = "200px";
-      successMessage.textContent = `Thank you for your wishes ${sender}!`;
-   } else {alert(
-      `Error.\n\nHello ${sender}, We failed to send your message.\nPlease reload the page or try again later.`
-   ); }
-
+    if (messageSent) {
+        wishForm.style.display = "none";
+        wishContainer.style.height = "200px";
+        successMessage.textContent = `Thank you for your wishes ${sender}!`;
+    } else {
+        alert(
+            `Error Error Error\n\nHello ${sender}, We failed to send your message.\nPlease reload the page or try again later.`
+        );
+    }
 }
 
-
 window.onload = function () {
-   wishForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+    wishForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-      // generate a five digit number for the contact_number variable
-      this.contact_number.value = (Math.random() * 100000) | 0;
+        // generate a five digit number for the contact_number variable. This used to distinguish between messages by emailjs.
+        this.contact_number.value = (Math.random() * 100000) | 0;
 
-      // Set default sender name
-      this.sender_name.value ||= "Anonymous";
+        // Set default sender name
+        this.sender_name.value ||= "Anonymous";
 
-      // send email
-      emailjs.sendForm(emailServiceID, emailTemplateID, this).then(
-         function (response) {
-
-            emailStatusIndicator(senderInput.value, true);
-         },
-         function (error) {
-            emailStatusIndicator(senderInput.value, false);
-         }
-      );
-   });
+        // send email
+        emailjs.sendForm(emailServiceID, emailTemplateID, this).then(
+            function () {
+                emailStatusIndicator(senderInput.value, true);
+            },
+            function () {
+                emailStatusIndicator(senderInput.value, false);
+            }
+        );
+    });
 };
