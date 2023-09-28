@@ -13,7 +13,7 @@ const birthdayEl = document.querySelector(".date");
 let myMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
 
 
-let myBirthDay = [10, 10]; // day month
+let myBirthDay = [28, 9]; // day month
 let isBirthday = false;
 
 
@@ -182,12 +182,17 @@ function updateQoutes() {
 
    const duration = 4000;
 
+ 
+   
    setInterval(() => {
 
-      let currentQuote = Math.floor(Math.random() * qoutes.length);
-      quoteEl.textContent = qoutes[currentQuote];
+      let currentQuote = isBirthday === true ? Math.floor(Math.random() * birthdayMessages.length) : Math.floor(Math.random() * qoutes.length);
+
+      quoteEl.textContent = isBirthday === true ? birthdayMessages[currentQuote] : qoutes[currentQuote] ;
 
    }, duration);
+
+
 }
 
 
