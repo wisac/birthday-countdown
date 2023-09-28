@@ -46,7 +46,7 @@ function getNextBirthday(day, month) {
 }
 
 
-const { birthday: endDate, startingDate: beginDate } = getNextBirthday(29, 9);
+const { birthday: endDate, startingDate: beginDate } = getNextBirthday(28, 9);
 
 const options = {
    weekday: "long",
@@ -94,6 +94,16 @@ function pauseCountdown(countdown) {
    minuteTimer.textContent = "00";
    secondTimer.textContent = "00";
    message.textContent = newMessage;
+
+   //reset birthday on ui 
+   const today = new Date();
+   const dateFormat = today.toLocaleDateString(undefined, {
+      day: "numeric",
+      weekday: "long",
+      year: "numeric",
+      month: "long"
+   })
+   birthdayEl.textContent = dateFormat;
 }
 
 startCountdown();
