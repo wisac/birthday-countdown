@@ -6,12 +6,18 @@ const dayTimer = document.querySelector(".day-hand");
 const hourTimer = document.querySelector(".hrs-hand");
 const minuteTimer = document.querySelector(".min-hand");
 const secondTimer = document.querySelector(".sec-hand");
+const message = document.querySelector(".message");
+
+const birthdayEl = document.querySelector(".date");
+
+let newMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
 
 
 function getNextBirthday(day, month) {
    const today = new Date();
    const birthday = new Date(today.getFullYear(), month - 1, day); // 10th October
    console.log("birtday real\n", birthday); // 2023 oct 10
+
 
    const startingDate = new Date(birthday); // 11th October
 
@@ -40,8 +46,20 @@ function getNextBirthday(day, month) {
 }
 
 
-const { birthday: endDate, startingDate: beginDate } = getNextBirthday(28, 9);
+const { birthday: endDate, startingDate: beginDate } = getNextBirthday(29, 9);
 
+const options = {
+   weekday: "long",
+   day: "numeric",
+   month: "long",
+   year: "numeric",
+}
+
+let birthDateFormat = endDate.toLocaleDateString(undefined, options);
+birthdayEl.textContent = birthDateFormat;
+
+
+// console.log(formatted)
 
 // Set countdown timer
 function startCountdown() {
@@ -75,9 +93,7 @@ function pauseCountdown(countdown) {
    hourTimer.textContent = "00";
    minuteTimer.textContent = "00";
    secondTimer.textContent = "00";
-   progressCircle.style.backgroundImage = `conic-gradient(
-      var(--primary-light) 0deg,
-      var(--secondary) 0deg`;
+   message.textContent = newMessage;
 }
 
 startCountdown();
@@ -147,10 +163,6 @@ function getProgressPercent(todayDate) {
 function updateProgressCircle(progressPercent) {
    const totalAngle = 360;
    let angle = (progressPercent / 100) * totalAngle;
-   progressCircle.style.backgroundImage = `conic-gradient(
-      var(--primary-light) ${angle}deg,
-      var(--secondary) ${angle}deg`;
-
 }
 
 
