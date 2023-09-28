@@ -6,12 +6,13 @@ const dayTimer = document.querySelector(".day-hand");
 const hourTimer = document.querySelector(".hrs-hand");
 const minuteTimer = document.querySelector(".min-hand");
 const secondTimer = document.querySelector(".sec-hand");
-const message = document.querySelector(".message");
-
+const quoteEl = document.querySelector(".message");
 const birthdayEl = document.querySelector(".date");
 
-let newMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
+let myMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
 
+
+let myBirthDay = [29, 9]; // day month
 
 function getNextBirthday(day, month) {
    const today = new Date();
@@ -46,14 +47,14 @@ function getNextBirthday(day, month) {
 }
 
 
-const { birthday: endDate, startingDate: beginDate } = getNextBirthday(28, 9);
+const { birthday: endDate, startingDate: beginDate } = getNextBirthday(...myBirthDay);
 
 const options = {
    weekday: "long",
    day: "numeric",
    month: "long",
    year: "numeric",
-}
+};
 
 let birthDateFormat = endDate.toLocaleDateString(undefined, options);
 birthdayEl.textContent = birthDateFormat;
@@ -74,6 +75,9 @@ function startCountdown() {
       // Update timer
       updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
 
+
+
+
       // Update progress circle   
       let progressPercent = getProgressPercent(today);
       updateProgressCircle(progressPercent);
@@ -93,7 +97,7 @@ function pauseCountdown(countdown) {
    hourTimer.textContent = "00";
    minuteTimer.textContent = "00";
    secondTimer.textContent = "00";
-   message.textContent = newMessage;
+   quoteEl.textContent = myMessage;
 
    //reset birthday on ui 
    const today = new Date();
@@ -102,7 +106,7 @@ function pauseCountdown(countdown) {
       weekday: "long",
       year: "numeric",
       month: "long"
-   })
+   });
    birthdayEl.textContent = dateFormat;
 }
 
@@ -174,6 +178,25 @@ function updateProgressCircle(progressPercent) {
    const totalAngle = 360;
    let angle = (progressPercent / 100) * totalAngle;
 }
+
+
+
+
+function updateQoutes() {
+
+   const duration = 4000;
+
+   setInterval(() => {
+
+      let currentQuote = Math.floor(Math.random() * 10);
+      console.log(qoutes.length);
+      quoteEl.textContent = qoutes[currentQuote];
+
+   }, duration);
+}
+
+updateQoutes();
+
 
 
 // Handle wish button click
