@@ -1,3 +1,4 @@
+
 // Select elements
 const wishBtn = document.querySelector(".wish-me-btn");
 const progressCircle = document.querySelector(".inner-circle");
@@ -12,33 +13,33 @@ const birthdayEl = document.querySelector(".date");
 let myMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
 
 
-let myBirthDay = [29, 9]; // day month
+let myBirthDay = [10, 10]; // day month
+let isBirthday = false;
 
+
+/**
+ * Calculates the next birthday date based on the provided day and month.
+ * If the birthday has already passed this year, it will return the next year's birthday date.
+ * @param {number} day - The day of the month of the birthday.
+ * @param {number} month - The month of the birthday.
+ * @returns {{birthday: Date, startingDate: Date}} - An object containing the next birthday date and the starting date for the countdown.
+ */
 function getNextBirthday(day, month) {
    const today = new Date();
-   const birthday = new Date(today.getFullYear(), month - 1, day); // 10th October
-   console.log("birtday real\n", birthday); // 2023 oct 10
+   const birthday = new Date(today.getFullYear(), month - 1, day);
+   const startingDate = new Date(birthday);
 
-
-   const startingDate = new Date(birthday); // 11th October
-
-
+   //set starting date to previous year and next day of birthday
+   //This is for when birthday has not passed
    startingDate.setFullYear(startingDate.getFullYear() - 1);
    startingDate.setDate(startingDate.getDate() + 1);
 
-   console.log("STARTING WHEN NOT PASSED\n", startingDate); // 2022 oct 11
-   console.log("\nBIRTHDAY WHEN NOT PASSED\n", birthday); // 2023 oct 10
-   console.log("\nREM NOT PAASED\n", (birthday - startingDate) / 1000 / 60 / 60 / 24);
-
 
    //if birthday has passed already, set next year's birthday
+   // set next birthday to next year set starting date to next day of current year birthday 
    if (today > birthday) {
       birthday.setFullYear(birthday.getFullYear() + 1);
       startingDate.setFullYear(startingDate.getFullYear() + 1);
-      console.log("\nSTARTING WHEN PASSED\n", startingDate); // 2023 oct 11
-      console.log("\nBIRTHDAY WHEN PASSED\n", birthday);  // 2024 oct 10
-
-      console.log("\nREM PAASED\n", (birthday - startingDate) / 1000 / 60 / 60 / 24);
    }
 
    return {
@@ -46,18 +47,10 @@ function getNextBirthday(day, month) {
    };
 }
 
-
+// Get next birthday and starting date for countdown
 const { birthday: endDate, startingDate: beginDate } = getNextBirthday(...myBirthDay);
 
-const options = {
-   weekday: "long",
-   day: "numeric",
-   month: "long",
-   year: "numeric",
-};
 
-let birthDateFormat = endDate.toLocaleDateString(undefined, options);
-birthdayEl.textContent = birthDateFormat;
 
 
 // console.log(formatted)
@@ -85,6 +78,9 @@ function startCountdown() {
       // Stop countdown timer when time is up
       if (progressPercent < 0 || remainingTime <= 0) {
          pauseCountdown(timer);
+         isBirthday = true;
+         updateDate();
+
       }
    }, 1000);
 }
@@ -98,16 +94,6 @@ function pauseCountdown(countdown) {
    minuteTimer.textContent = "00";
    secondTimer.textContent = "00";
    quoteEl.textContent = myMessage;
-
-   //reset birthday on ui 
-   const today = new Date();
-   const dateFormat = today.toLocaleDateString(undefined, {
-      day: "numeric",
-      weekday: "long",
-      year: "numeric",
-      month: "long"
-   });
-   birthdayEl.textContent = dateFormat;
 }
 
 startCountdown();
@@ -171,19 +157,20 @@ function getProgressPercent(todayDate) {
 
 
 /**
- * Function to update progress circle
+ * Updates the progress indicator circle with the progress percentage. 
  * @param {number} progressPercent - Progress percentage
+ * @returns {void}
  */
 function updateProgressCircle(progressPercent) {
    const totalAngle = 360;
    let angle = (progressPercent / 100) * totalAngle;
-   progressCircle.style.backgroundImage = `conic-gradient(
+
+   progressCircle.style.backgroundImage = angle >= 0 ? `conic-gradient(
       var(--primary-light) ${angle}deg,
-      var(--secondary) ${angle}deg`;
+      var(--secondary) ${angle}deg` : `conic-gradient(
+         var(--primary-light) ${totalAngle}deg,
+         var(--secondary) ${totalAngle}deg`;
 }
-
-
-
 
 
 /**
@@ -204,7 +191,33 @@ function updateQoutes() {
 }
 
 
+
+/**
+ * Updates the date element with the current date or the next birthday date.
+ * @function
+ * @returns {void}
+ */
+function updateDate() {
+   const today = new Date();
+   const options = {
+      day: "numeric",
+      weekday: "long",
+      year: "numeric",
+      month: "long"
+   };
+
+   //format date
+   const todayBirthday = today.toLocaleDateString(undefined, options);
+   const nextBirthDay = endDate.toLocaleDateString(undefined, options);
+
+   birthdayEl.textContent = isBirthday ? todayBirthday : nextBirthDay;
+}
+
 updateQoutes();
+
+updateDate();
+
+
 
 
 // Handle wish button click
