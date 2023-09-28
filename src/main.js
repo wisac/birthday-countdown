@@ -7,8 +7,6 @@ const hourTimer = document.querySelector(".hrs-hand");
 const minuteTimer = document.querySelector(".min-hand");
 const secondTimer = document.querySelector(".sec-hand");
 
-// Set start and end date
-const currentYear = new Date().getFullYear();
 
 function getNextBirthday(day, month) {
    const today = new Date();
@@ -42,48 +40,47 @@ function getNextBirthday(day, month) {
 }
 
 
-
-// const test = new Date(new Date().getFullYear(), 8, 30);
-// const birthday = "sept 30";
-// const lastDigit = parseInt(birthday.slice(-1)) + 1;
-// const beginCountDay = `${birthday.slice(0, -1).concat(lastDigit)}`;
-// console.log("begin", beginCountDay);
-
-// const beginDate = new Date(`${beginCountDay}, ${currentYear} 00:00:00`);
-
-const { birthday : endDate, startingDate : beginDate } = getNextBirthday(31,1);
-
-console.log("begin", beginDate);
-console.log("end", endDate);
-
-// const endDate = new Date(`${birthday}, ${currentYear} 00:00:00`);
+const { birthday: endDate, startingDate: beginDate } = getNextBirthday(28, 9);
 
 
 // Set countdown timer
-let timer = setInterval(() => {
+function startCountdown() {
+   let timer = setInterval(() => {
 
-   const today = new Date();
-   const remainingTime = endDate.getTime() - today.getTime();
+      const today = new Date();
+      const remainingTime = endDate.getTime() - today.getTime();
 
-   //format time
-   const updateTimer = formatTime(remainingTime);
+      //format time
+      const updateTimer = formatTime(remainingTime);
 
-   // Update timer
-   updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
+      // Update timer
+      updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
 
-   // Update progress circle   
-   let progressPercent = getProgressPercent(today);
-   updateProgressCircle(progressPercent);
+      // Update progress circle   
+      let progressPercent = getProgressPercent(today);
+      updateProgressCircle(progressPercent);
 
-   // Stop countdown timer when time is up
-   if (remainingTime <= 0) {
-      mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
-      clearInterval(timer);
-   }
-}, 1000);
+      // Stop countdown timer when time is up
+      if (progressPercent < 0 || remainingTime <= 0) {
+         pauseCountdown(timer);
+      }
+   }, 1000);
+}
 
 
+function pauseCountdown(countdown) {
+   clearInterval(countdown);
+   mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
+   dayTimer.textContent = "00";
+   hourTimer.textContent = "00";
+   minuteTimer.textContent = "00";
+   secondTimer.textContent = "00";
+   progressCircle.style.backgroundImage = `conic-gradient(
+      var(--primary-light) 0deg,
+      var(--secondary) 0deg`;
+}
 
+startCountdown();
 
 
 
@@ -141,31 +138,6 @@ function getProgressPercent(todayDate) {
    console.log(progressPercent, "%");
    return progressPercent;
 }
-
-
-
-
-// /**
-//  * Function to update timer on UI
-//  * @param {number} days - Days left
-//  * @param {number} hours - Hours left
-//  * @param {number} minutes - Minutes left
-//  * @param {number} seconds - Seconds left
-//  */
-// function updateTimer(days, hours, minutes, seconds) {
-
-//    //reset timer UI
-//    days > 0 ? days : (days = 0);
-//    hours > 0 ? hours : (hours = 0);
-//    minutes > 0 ? minutes : (minutes = 0);
-//    seconds > 0 ? seconds : (seconds = 0);
-
-//    // Update timer UI
-//    dayTimer.textContent = days > 9 ? days : `0${days}`;
-//    hourTimer.textContent = hours > 9 ? hours : `0${hours}`;
-//    minuteTimer.textContent = minutes > 9 ? minutes : `0${minutes}`;
-//    secondTimer.textContent = seconds > 9 ? seconds : `0${seconds}`;
-// }
 
 
 /**
