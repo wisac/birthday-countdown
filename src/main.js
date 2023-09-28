@@ -1,3 +1,14 @@
+/**
+ * This file contains the main logic for the Birthday Countdown app.
+ *
+ * It defines functions to select elements from the DOM, calculate the next birthday date,
+ * start and pause the countdown timer, format and update the remaining time,
+ * calculate and update the progress indicator circle, and update the main title and date when the countdown ends.
+ *
+ * @file This file contains the main logic for the Birthday Countdown app.
+ * @author [Isaac Wilson]
+ * @license MIT
+ */
 
 // Select elements
 const wishBtn = document.querySelector(".wish-me-btn");
@@ -10,12 +21,16 @@ const secondTimer = document.querySelector(".sec-hand");
 const quoteEl = document.querySelector(".message");
 const birthdayEl = document.querySelector(".date");
 
-let myMessage = "It's a great priviledge to be here, alive and healthy. I'm rejoicing in God's goodness. Happy birthday to me.";
+//User's birthday (day, month)
+let myBirthDay = [29, 9];
 
-
-let myBirthDay = [28, 9]; // day month
+//Whether it's the user's birthday or not
 let isBirthday = false;
 
+// Get next birthday and starting date for countdown
+const { birthday: endDate, startingDate: beginDate } = getNextBirthday(
+   ...myBirthDay
+);
 
 /**
  * Calculates the next birthday date based on the provided day and month.
@@ -34,31 +49,28 @@ function getNextBirthday(day, month) {
    startingDate.setFullYear(startingDate.getFullYear() - 1);
    startingDate.setDate(startingDate.getDate() + 1);
 
-
    //if birthday has passed already, set next year's birthday
-   // set next birthday to next year set starting date to next day of current year birthday 
+   // set next birthday to next year set starting date to next day of current year birthday
    if (today > birthday) {
       birthday.setFullYear(birthday.getFullYear() + 1);
       startingDate.setFullYear(startingDate.getFullYear() + 1);
    }
 
    return {
-      birthday: birthday, startingDate: startingDate
+      birthday: birthday,
+      startingDate: startingDate,
    };
 }
 
-// Get next birthday and starting date for countdown
-const { birthday: endDate, startingDate: beginDate } = getNextBirthday(...myBirthDay);
-
-
-
-
-// console.log(formatted)
-
-// Set countdown timer
+/**
+ * Starts the countdown timer and updates the timer and progress circle every second.
+ * @function
+ * @returns {void}
+ */
 function startCountdown() {
-   let timer = setInterval(() => {
+   const interval = 1000;
 
+   let timer = setInterval(() => {
       const today = new Date();
       const remainingTime = endDate.getTime() - today.getTime();
 
@@ -68,10 +80,7 @@ function startCountdown() {
       // Update timer
       updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
 
-
-
-
-      // Update progress circle   
+      // Update progress circle
       let progressPercent = getProgressPercent(today);
       updateProgressCircle(progressPercent);
 
@@ -80,12 +89,15 @@ function startCountdown() {
          pauseCountdown(timer);
          isBirthday = true;
          updateDate();
-
       }
-   }, 1000);
+   }, interval);
 }
 
-
+/**
+ * Pauses the countdown timer and updates the main title.
+ * @param {number} countdown - The countdown timer
+ * @returns {void}
+ * */
 function pauseCountdown(countdown) {
    clearInterval(countdown);
    mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
@@ -93,12 +105,7 @@ function pauseCountdown(countdown) {
    hourTimer.textContent = "00";
    minuteTimer.textContent = "00";
    secondTimer.textContent = "00";
-   quoteEl.textContent = myMessage;
 }
-
-startCountdown();
-
-
 
 /**
  * Formats the remaining time and displays it on the screen.
@@ -117,10 +124,7 @@ function formatTime(milliseconds) {
 
    console.log(days + "d :" + hours + "h :" + minutes + "m :" + seconds + "s");
 
-
-
    return function (dayEl, hourEl, minEl, secEl) {
-
       //reset timer UI
       days > 0 ? days : (days = 0);
       hours > 0 ? hours : (hours = 0);
@@ -134,9 +138,6 @@ function formatTime(milliseconds) {
       secEl.textContent = seconds > 9 ? seconds : `0${seconds}`;
    };
 }
-
-
-
 
 /**
  * Calculates the percentage of time passed since the beginning of the countdown.
@@ -155,9 +156,8 @@ function getProgressPercent(todayDate) {
    return progressPercent;
 }
 
-
 /**
- * Updates the progress indicator circle with the progress percentage. 
+ * Updates the progress indicator circle with the progress percentage.
  * @param {number} progressPercent - Progress percentage
  * @returns {void}
  */
@@ -165,37 +165,36 @@ function updateProgressCircle(progressPercent) {
    const totalAngle = 360;
    let angle = (progressPercent / 100) * totalAngle;
 
-   progressCircle.style.backgroundImage = angle >= 0 ? `conic-gradient(
+   progressCircle.style.backgroundImage =
+      angle >= 0
+         ? `conic-gradient(
       var(--primary-light) ${angle}deg,
-      var(--secondary) ${angle}deg` : `conic-gradient(
+      var(--secondary) ${angle}deg`
+         : `conic-gradient(
          var(--primary-light) ${totalAngle}deg,
          var(--secondary) ${totalAngle}deg`;
 }
 
-
 /**
- * Updates the quote element with a random quote from the `qoutes` array at a specified interval.
+ * Updates the qoute element with a random qoute from the qoutes array or birthdayMessages array if it's the user's birthday or not.
  * @function
  * @returns {void}
  */
-function updateQoutes() {
-
+function updateQuote() {
    const duration = 4000;
 
- 
-   
    setInterval(() => {
+      let currentQuote =
+         isBirthday === true
+            ? Math.floor(Math.random() * birthdayMessages.length)
+            : Math.floor(Math.random() * quotes.length);
 
-      let currentQuote = isBirthday === true ? Math.floor(Math.random() * birthdayMessages.length) : Math.floor(Math.random() * qoutes.length);
-
-      quoteEl.textContent = isBirthday === true ? birthdayMessages[currentQuote] : qoutes[currentQuote] ;
-
+      quoteEl.textContent =
+         isBirthday === true
+            ? birthdayMessages[currentQuote]
+            : quotes[currentQuote];
    }, duration);
-
-
 }
-
-
 
 /**
  * Updates the date element with the current date or the next birthday date.
@@ -208,7 +207,7 @@ function updateDate() {
       day: "numeric",
       weekday: "long",
       year: "numeric",
-      month: "long"
+      month: "long",
    };
 
    //format date
@@ -218,12 +217,16 @@ function updateDate() {
    birthdayEl.textContent = isBirthday ? todayBirthday : nextBirthDay;
 }
 
-updateQoutes();
+// Initialize app
+function init() {
+   startCountdown();
 
-updateDate();
+   updateQuote();
 
+   updateDate();
+}
 
-
+init(); // Call
 
 // Handle wish button click
 wishBtn.addEventListener("click", function (e) {
