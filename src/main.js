@@ -29,7 +29,7 @@ let isBirthday = false;
 
 // Get next birthday and starting date for countdown
 const { birthday: endDate, startingDate: beginDate } = getNextBirthday(
-   ...myBirthDay
+    ...myBirthDay
 );
 
 /**
@@ -40,26 +40,26 @@ const { birthday: endDate, startingDate: beginDate } = getNextBirthday(
  * @returns {{birthday: Date, startingDate: Date}} - An object containing the next birthday date and the starting date for the countdown.
  */
 function getNextBirthday(day, month) {
-   const today = new Date();
-   const birthday = new Date(today.getFullYear(), month - 1, day);
-   const startingDate = new Date(birthday);
+    const today = new Date();
+    const birthday = new Date(today.getFullYear(), month - 1, day);
+    const startingDate = new Date(birthday);
 
-   //set starting date to previous year and next day of birthday
-   //This is for when birthday has not passed
-   startingDate.setFullYear(startingDate.getFullYear() - 1);
-   startingDate.setDate(startingDate.getDate() + 1);
+    //set starting date to previous year and next day of birthday
+    //This is for when birthday has not passed
+    startingDate.setFullYear(startingDate.getFullYear() - 1);
+    startingDate.setDate(startingDate.getDate() + 1);
 
-   //if birthday has passed already, set next year's birthday
-   // set next birthday to next year set starting date to next day of current year birthday
-   if (today > birthday) {
-      birthday.setFullYear(birthday.getFullYear() + 1);
-      startingDate.setFullYear(startingDate.getFullYear() + 1);
-   }
+    //if birthday has passed already, set next year's birthday
+    // set next birthday to next year set starting date to next day of current year birthday
+    if (today > birthday) {
+        birthday.setFullYear(birthday.getFullYear() + 1);
+        startingDate.setFullYear(startingDate.getFullYear() + 1);
+    }
 
-   return {
-      birthday: birthday,
-      startingDate: startingDate,
-   };
+    return {
+        birthday: birthday,
+        startingDate: startingDate,
+    };
 }
 
 /**
@@ -68,29 +68,29 @@ function getNextBirthday(day, month) {
  * @returns {void}
  */
 function startCountdown() {
-   const interval = 1000;
+    const interval = 1000; // 1 second
 
-   let timer = setInterval(() => {
-      const today = new Date();
-      const remainingTime = endDate.getTime() - today.getTime();
+    let timer = setInterval(() => {
+        const today = new Date();
+        const remainingTime = endDate.getTime() - today.getTime();
 
-      //format time
-      const updateTimer = formatTime(remainingTime);
+        //format time
+        const updateTimer = formatTime(remainingTime);
 
-      // Update timer
-      updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
+        // Update timer
+        updateTimer(dayTimer, hourTimer, minuteTimer, secondTimer);
 
-      // Update progress circle
-      let progressPercent = getProgressPercent(today);
-      updateProgressCircle(progressPercent);
+        // Update progress circle
+        let progressPercent = getProgressPercent(today);
+        updateProgressCircle(progressPercent);
 
-      // Stop countdown timer when time is up
-      if (progressPercent < 0 || remainingTime <= 0) {
-         pauseCountdown(timer);
-         isBirthday = true;
-         updateDate();
-      }
-   }, interval);
+        // Stop countdown timer when time is up
+        if (progressPercent < 0 || remainingTime <= 0) {
+            pauseCountdown(timer);
+            isBirthday = true;
+            updateDate();
+        }
+    }, interval);
 }
 
 /**
@@ -99,44 +99,42 @@ function startCountdown() {
  * @returns {void}
  * */
 function pauseCountdown(countdown) {
-   clearInterval(countdown);
-   mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
-   dayTimer.textContent = "00";
-   hourTimer.textContent = "00";
-   minuteTimer.textContent = "00";
-   secondTimer.textContent = "00";
+    clearInterval(countdown);
+    mainTitle.textContent = "HAPPY BIRTHDAY TO ME!";
+    dayTimer.textContent = "00";
+    hourTimer.textContent = "00";
+    minuteTimer.textContent = "00";
+    secondTimer.textContent = "00";
 }
 
 /**
  * Formats the remaining time and displays it on the screen.
  * @param {number} milliseconds - Remaining time in milliseconds
- * @returns {function} - Function that updates the timer
+ * @returns {function} - Function that updates the timer on the screen
  */
 function formatTime(milliseconds) {
-   const totalSeconds = parseInt(Math.floor(milliseconds / 1000));
-   const totalMinutes = parseInt(Math.floor(totalSeconds / 60));
-   const totalHours = parseInt(Math.floor(totalMinutes / 60));
-   let days = parseInt(Math.floor(totalHours / 24));
+    const totalSeconds = parseInt(Math.floor(milliseconds / 1000));
+    const totalMinutes = parseInt(Math.floor(totalSeconds / 60));
+    const totalHours = parseInt(Math.floor(totalMinutes / 60));
+    let days = parseInt(Math.floor(totalHours / 24));
 
-   let seconds = parseInt(totalSeconds % 60);
-   let minutes = parseInt(totalMinutes % 60);
-   let hours = parseInt(totalHours % 24);
+    let seconds = parseInt(totalSeconds % 60);
+    let minutes = parseInt(totalMinutes % 60);
+    let hours = parseInt(totalHours % 24);
 
-   console.log(days + "d :" + hours + "h :" + minutes + "m :" + seconds + "s");
+    return function (dayEl, hourEl, minEl, secEl) {
+        //reset timer UI
+        days > 0 ? days : (days = 0);
+        hours > 0 ? hours : (hours = 0);
+        minutes > 0 ? minutes : (minutes = 0);
+        seconds > 0 ? seconds : (seconds = 0);
 
-   return function (dayEl, hourEl, minEl, secEl) {
-      //reset timer UI
-      days > 0 ? days : (days = 0);
-      hours > 0 ? hours : (hours = 0);
-      minutes > 0 ? minutes : (minutes = 0);
-      seconds > 0 ? seconds : (seconds = 0);
-
-      // Update timer UI
-      dayEl.textContent = days > 9 ? days : `0${days}`;
-      hourEl.textContent = hours > 9 ? hours : `0${hours}`;
-      minEl.textContent = minutes > 9 ? minutes : `0${minutes}`;
-      secEl.textContent = seconds > 9 ? seconds : `0${seconds}`;
-   };
+        // Update timer UI
+        dayEl.textContent = days > 9 ? days : `0${days}`;
+        hourEl.textContent = hours > 9 ? hours : `0${hours}`;
+        minEl.textContent = minutes > 9 ? minutes : `0${minutes}`;
+        secEl.textContent = seconds > 9 ? seconds : `0${seconds}`;
+    };
 }
 
 /**
@@ -145,15 +143,14 @@ function formatTime(milliseconds) {
  * @returns {number} - Progress percentage
  */
 function getProgressPercent(todayDate) {
-   const todayTime = todayDate.getTime();
-   const beginTime = beginDate.getTime();
-   const endTime = endDate.getTime();
+    const todayTime = todayDate.getTime();
+    const beginTime = beginDate.getTime();
+    const endTime = endDate.getTime();
 
-   const progressPercent = Math.floor(
-      ((todayTime - beginTime) / (endTime - beginTime)) * 100
-   );
-   console.log(progressPercent, "%");
-   return progressPercent;
+    const progressPercent = Math.floor(
+        ((todayTime - beginTime) / (endTime - beginTime)) * 100
+    );
+    return progressPercent;
 }
 
 /**
@@ -162,15 +159,15 @@ function getProgressPercent(todayDate) {
  * @returns {void}
  */
 function updateProgressCircle(progressPercent) {
-   const totalAngle = 360;
-   let angle = (progressPercent / 100) * totalAngle;
+    const totalAngle = 360;
+    let angle = (progressPercent / 100) * totalAngle;
 
-   progressCircle.style.backgroundImage =
-      angle >= 0
-         ? `conic-gradient(
+    progressCircle.style.backgroundImage =
+        angle >= 0
+            ? `conic-gradient(
       var(--primary-light) ${angle}deg,
       var(--secondary) ${angle}deg`
-         : `conic-gradient(
+            : `conic-gradient(
          var(--primary-light) ${totalAngle}deg,
          var(--secondary) ${totalAngle}deg`;
 }
@@ -181,19 +178,19 @@ function updateProgressCircle(progressPercent) {
  * @returns {void}
  */
 function updateQuote() {
-   const duration = 4000;
+    const duration = 300000; // 5 minutes
 
-   setInterval(() => {
-      let currentQuote =
-         isBirthday === true
-            ? Math.floor(Math.random() * birthdayMessages.length)
-            : Math.floor(Math.random() * quotes.length);
+    setInterval(() => {
+        let currentQuote =
+            isBirthday === true
+                ? Math.floor(Math.random() * birthdayMessages.length)
+                : Math.floor(Math.random() * quotes.length);
 
-      quoteEl.textContent =
-         isBirthday === true
-            ? birthdayMessages[currentQuote]
-            : quotes[currentQuote];
-   }, duration);
+        quoteEl.textContent =
+            isBirthday === true
+                ? birthdayMessages[currentQuote]
+                : quotes[currentQuote];
+    }, duration);
 }
 
 /**
@@ -202,34 +199,34 @@ function updateQuote() {
  * @returns {void}
  */
 function updateDate() {
-   const today = new Date();
-   const options = {
-      day: "numeric",
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-   };
+    const today = new Date();
+    const options = {
+        day: "numeric",
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+    };
 
-   //format date
-   const todayBirthday = today.toLocaleDateString(undefined, options);
-   const nextBirthDay = endDate.toLocaleDateString(undefined, options);
+    //format date
+    const todayBirthday = today.toLocaleDateString(undefined, options);
+    const nextBirthDay = endDate.toLocaleDateString(undefined, options);
 
-   birthdayEl.textContent = isBirthday ? todayBirthday : nextBirthDay;
+    birthdayEl.textContent = isBirthday ? todayBirthday : nextBirthDay;
 }
 
 // Initialize app
 function init() {
-   startCountdown();
+    startCountdown();
 
-   updateQuote();
+    updateQuote();
 
-   updateDate();
+    updateDate();
 }
 
 init(); // Call
 
 // Handle wish button click
 wishBtn.addEventListener("click", function (e) {
-   e.preventDefault();
-   window.location.href = "wish.html";
+    e.preventDefault();
+    window.location.href = "wish.html";
 });

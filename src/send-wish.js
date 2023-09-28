@@ -1,3 +1,15 @@
+/**
+ * @file send-wish.js
+ * @description This file handles the sending of wishes to my email using emailjs API and the emailjs-template service
+ * @version 1.0.0
+ * @since 26 Sept 2023
+ * @requires emailjs
+ * @requires emailjs-com
+ */
+
+
+
+
 //Select elements
 const wishContainer = document.querySelector(".wish-container");
 const successMessage = document.querySelector(".title");
