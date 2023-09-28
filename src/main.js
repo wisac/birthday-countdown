@@ -177,26 +177,34 @@ function getProgressPercent(todayDate) {
 function updateProgressCircle(progressPercent) {
    const totalAngle = 360;
    let angle = (progressPercent / 100) * totalAngle;
+   progressCircle.style.backgroundImage = `conic-gradient(
+      var(--primary-light) ${angle}deg,
+      var(--secondary) ${angle}deg`;
 }
 
 
 
 
+
+/**
+ * Updates the quote element with a random quote from the `qoutes` array at a specified interval.
+ * @function
+ * @returns {void}
+ */
 function updateQoutes() {
 
    const duration = 4000;
 
    setInterval(() => {
 
-      let currentQuote = Math.floor(Math.random() * 10);
-      console.log(qoutes.length);
+      let currentQuote = Math.floor(Math.random() * qoutes.length);
       quoteEl.textContent = qoutes[currentQuote];
 
    }, duration);
 }
 
-updateQoutes();
 
+updateQoutes();
 
 
 // Handle wish button click
