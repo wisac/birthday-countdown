@@ -22,7 +22,7 @@ const quoteEl = document.querySelector(".message");
 const birthdayEl = document.querySelector(".date");
 
 //User's birthday (day, month)
-let myBirthDay = [29, 9];
+let myBirthDay = [10, 10];
 
 //Whether it's the user's birthday or not
 let isBirthday = false;
@@ -83,12 +83,13 @@ function startCountdown() {
         // Update progress circle
         let progressPercent = getProgressPercent(today);
         updateProgressCircle(progressPercent);
-
+        
         // Stop countdown timer when time is up
         if (progressPercent < 0 || remainingTime <= 0) {
             pauseCountdown(timer);
             isBirthday = true;
             updateDate();
+            enableBtn()
         }
     }, interval);
 }
@@ -214,6 +215,14 @@ function updateDate() {
     birthdayEl.textContent = isBirthday ? todayBirthday : nextBirthDay;
 }
 
+/**
+ * Disables and enables wish me button
+ * @returns {void}
+ */
+function enableBtn() {
+    wishBtn.disabled = isBirthday === true ? false : true;
+}
+
 // Initialize app
 function init() {
     startCountdown();
@@ -221,9 +230,11 @@ function init() {
     updateQuote();
 
     updateDate();
+    // disableBtn();
 }
 
 init(); // Call
+
 
 // Handle wish button click
 wishBtn.addEventListener("click", function (e) {

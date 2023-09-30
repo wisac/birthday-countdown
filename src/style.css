@@ -49,7 +49,7 @@ main {
 
     /* High resolution tablets and small laptops 768px to 1024px*/
     @media screen and (min-width: 768px) {
-        background-position: -200px;
+        background-position: -100px;
         justify-content: center;
         padding: 2rem;
         &::before {

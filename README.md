@@ -1,5 +1,3 @@
-Certainly, here's the entire README content in Markdown format, including the "Usage," "Customization," "Dependencies," "Contributions," and "License" sections:
-
 # Birthday Countdown App
 
 ## Overview
