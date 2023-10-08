@@ -76,4 +76,5 @@ form {
     height: 2.5rem;
     width: 11rem;
     margin-top: 1rem;
+    -webkit-appearance: none !important ;
 }

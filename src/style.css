@@ -282,6 +282,8 @@ main {
         font-weight: 600;
         transition: filter, 0.2s ease-in-out;
         text-align: center;
+         -webkit-appearance: none !important ;
+
 
         &:hover {
             cursor: pointer;
