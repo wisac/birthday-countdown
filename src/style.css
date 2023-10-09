@@ -45,8 +45,6 @@ main {
     width: 100vw;
     display: flex;
 
-    
-
     /* High resolution tablets and small laptops 768px to 1024px*/
     @media screen and (min-width: 768px) {
         background-position: -100px;
@@ -219,7 +217,6 @@ main {
     } /* 1024px */
 }
 
-
 .time-hand-time {
     font-size: 2.5rem;
 
@@ -239,8 +236,6 @@ main {
     margin: auto;
     height: fit-content;
     color: var(--primary-light);
-    ;
-    
 }
 
 .message-container {
@@ -257,7 +252,6 @@ main {
     & .message {
         color: #fff;
         font-size: 1.1rem;
-    
 
         /* High resolution tablets and small laptops 768px to 1024px*/
         @media screen and (min-width: 768px) {
@@ -266,53 +260,69 @@ main {
     }
 }
 
+.button-container {
+    text-align: center;
+}
 
 .wish-me-btn {
-        width: 12rem;
-        height: 3rem;
-        border-radius: 40px;
-        border: none;
-        background-image: linear-gradient(
-            to right,
-            var(--secondary) 85%,
-            var(--primary-light) 50%
-        );
-        color: var(--primary-dark);
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        font-weight: 600;
-        transition: filter, 0.2s ease-in-out;
-        text-align: center;
-         -webkit-appearance: none !important ;
+    width: 12rem;
+    height: 3rem;
+    border-radius: 40px;
+    border: none;
+    background-image: linear-gradient(
+        to right,
+        var(--secondary) 85%,
+        var(--primary-light) 50%
+    );
+    color: var(--primary-dark);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+    transition: filter, 0.2s ease-in-out;
+    text-align: center;
+    -webkit-appearance: none !important ;
 
-
-        &:hover {
-            cursor: pointer;
-            filter: brightness(1.1);
-        }
-
-        &:active {
-            filter: brightness(0.9);
-        }
-
-        /* Low resolution tablets and large mobile 480px to 768px*/
-        @media screen and (min-width: 480px) {
-            width: 13rem;
-            height: 3.5rem;
-            font-size: 1.1rem;
-        } /* 480px */
-
-        /* High resolution tablets and small laptops 768px to 1024px*/
-        @media screen and (min-width: 768px) {
-            width: 15rem;
-            height: 4rem;
-            font-size: 1.3rem;
-        } /* 768px */
-
-        /* Laptop and desktop 1024px to 2560px*/
-        @media screen and (min-width: 1024px) {
-            width: 12rem;
-            height: 3rem;
-            font-size: 1.2rem;
-        } /* 1024px */
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.1);
     }
 
+    &:active {
+        filter: brightness(0.9);
+    }
+
+    /* Low resolution tablets and large mobile 480px to 768px*/
+    @media screen and (min-width: 480px) {
+        width: 13rem;
+        height: 3.5rem;
+        font-size: 1.1rem;
+    } /* 480px */
+
+    /* High resolution tablets and small laptops 768px to 1024px*/
+    @media screen and (min-width: 768px) {
+        width: 15rem;
+        height: 4rem;
+        font-size: 1.3rem;
+    } /* 768px */
+
+    /* Laptop and desktop 1024px to 2560px*/
+    @media screen and (min-width: 1024px) {
+        width: 12rem;
+        height: 3rem;
+        font-size: 1.2rem;
+    } /* 1024px */
+}
+
+.wish-status {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    background-color: var(--primary-transparent);
+    border-radius: 30px;
+    padding: 0 0.5rem;
+    margin-top: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.show-wish-status {
+    opacity: 1;
+}

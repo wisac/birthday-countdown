@@ -20,6 +20,7 @@ const minuteTimer = document.querySelector(".min-hand");
 const secondTimer = document.querySelector(".sec-hand");
 const quoteEl = document.querySelector(".message");
 const birthdayEl = document.querySelector(".date");
+const WishStatusEl = document.querySelector(".wish-status");
 
 //User's birthday (day, month)
 let myBirthDay = [10, 10];
@@ -83,13 +84,12 @@ function startCountdown() {
         // Update progress circle
         let progressPercent = getProgressPercent(today);
         updateProgressCircle(progressPercent);
-        
+
         // Stop countdown timer when time is up
         if (progressPercent < 0 || remainingTime <= 0) {
             pauseCountdown(timer);
             isBirthday = true;
             updateDate();
-            enableBtn()
         }
     }, interval);
 }
@@ -174,7 +174,7 @@ function updateProgressCircle(progressPercent) {
 }
 
 /**
- * Updates the qoute element with a random qoute from the qoutes array or birthdayMessages array if it's the user's birthday or not.
+ * Updates the quote element with a random quote from the quotes array or birthdayMessages array if it's the user's birthday or not.
  * @function
  * @returns {void}
  */
@@ -216,11 +216,24 @@ function updateDate() {
 }
 
 /**
- * Disables and enables wish me button
+ * Show toast of when wish can be sent
+ * @function
  * @returns {void}
  */
-function enableBtn() {
-    wishBtn.disabled = isBirthday === true ? false : true;
+function toastWishStatus() {
+    const wishDate = endDate.toLocaleDateString("en-us", {
+        month: "short",
+        day: "numeric",
+    });
+
+    WishStatusEl.textContent = `You can only send wish on ${wishDate}`;
+    //show toast
+    WishStatusEl.classList.add("show-wish-status");
+
+    //hide toast
+    setTimeout(() => {
+        WishStatusEl.classList.remove("show-wish-status");
+    }, 2000);
 }
 
 // Initialize app
@@ -235,9 +248,10 @@ function init() {
 
 init(); // Call
 
-
 // Handle wish button click
 wishBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = "wish.html";
+
+    if (isBirthday) window.location.href = "wish.html";
+    else toastWishStatus();
 });
