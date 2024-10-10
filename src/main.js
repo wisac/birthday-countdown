@@ -179,7 +179,7 @@ function updateProgressCircle(progressPercent) {
  * @returns {void}
  */
 function updateQuote() {
-    const duration = 60000; // 1 minute
+    const duration = 10000; // 1 minute
 
     setInterval(() => {
         let currentQuote =
